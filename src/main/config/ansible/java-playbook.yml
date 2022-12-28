@@ -1,0 +1,69 @@
+- name: software configuration
+  hosts: all
+  tasks:
+    - name: install jdk
+      apt:
+        name: openjdk-11-jdk
+        state: present
+      become: yes
+    - name:
+      file:
+        path: ~/middleware
+        state: directory
+    - name:
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
+        dest: ~/middleware
+    - name:
+      unarchive:
+        src: ~/middleware/apache-tomcat-10.0.27.tar.gz
+        dest: ~/middleware
+        remote_src: yes
+    - name:
+      copy:
+        src: /tmp/tomcat.service
+        dest: /etc/systemd/system/tomcat.service
+      become: yes
+    - name: install python3-pymysql
+      apt:
+        name: python3-pymysql
+        state: present
+        update_cache: yes
+      become: yes
+      become_method: sudo    
+    - name: install mysql client
+      apt:
+        name: mysql-client-8.0
+        state: present
+        update_cache: yes
+      become: yes
+      become_method: sudo      
+    - name: copy schema file
+      copy:
+        src: /tmp/db-schema.sql
+        dest: /tmp/db-schema.sql 
+    - name: create schema
+      community.mysql.mysql_db:
+        state: import
+        name: all   
+        target: /tmp/db-schema.sql
+        login_host : terraform-20221228093850683100000006.czqifripk4x5.ap-south-1.rds.amazonaws.com
+        login_user : root
+        login_password: jana1234
+    - name: deploy
+      copy:
+        src: /tmp/fithealth2.war
+        dest: /home/ubuntu/middleware/apache-tomcat-10.0.27/webapps
+    - name:
+      ansible.builtin.systemd:
+        daemon_reload: yes
+      become: yes
+    - name: Restart tomcat.service
+      ansible.builtin.service:
+        name: tomcat
+        state: restarted
+      become: yes
+
+
+
+        

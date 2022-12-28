@@ -1,0 +1,3 @@
+subnet_cidrs = ["172.10.1.0/24","172.10.2.0/24","172.10.3.0/24","172.10.4.0/24","172.10.5.0/24","172.10.6.0/24",]
+public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDwarTgN5E8rkXBCbROYdyTbJxoUPW9xw2wPiypPRwa/H5pJAmYWyP6vuig2rm/zxBARrCj7mPkkagwszZmaRy9ZgYryUxUbmEAKlXmNVEABuNtfVYJGGbb0hVC3jIltbsBv1raA+AS/nnwyWua8kf6OzR45ZTZKen10367TBpfmsiVCtARTJ/LlwaueS7K8FOE7mKAkjvip0qp3esRgw89qFrJ8o1InOyqRvbggUEpwj2IMEtPxc/PfvfELIth8qmoBXvf1ajF/SWKFp/MxHDWAK0ZiHvUGcCWzqszDvbVR9+n/hivuNzDrf8LEa9IF0I0YyzkpPEwR1x/eJ+GTHTgFdgOsZFnC7dCx6PoDFZW+UE9na9jeFEDHjd2iMAp/48kDuVHPMYjchq8Tup6Fr4jtcFhUJ5MOR/snyVJSfnDKmw5Vso53BQM3XGbqSp5AnJwHmt0jfQV6ZeFCMani4g9LM6A54/itv/ZEdbNHGFv4ILRrWFPxQO2UV/xv9zQ79M= janardhan@Janardhan"
+zone = ["ap-south-1a","ap-south-1b"]
