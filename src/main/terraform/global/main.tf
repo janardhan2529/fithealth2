@@ -87,7 +87,7 @@ resource "null_resource" "copy" {
     type        = "ssh"
     host        = aws_instance.jmpboxinstance.public_ip
     user        = "ubuntu"
-    private_key = file("/u01/jenkins/workspace/fitheaith_usecase/src/main/terraform/global/keys")
+    private_key = file("/u01/jenkins/workspace/fitheaith_usecase/src/main/terraform/global/keys/jana")
 
   }
   provisioner "file" {
@@ -124,6 +124,10 @@ resource "null_resource" "copy" {
 
 
   }
+    depends_on = [
+    aws_instance.jmpboxinstance
+  ]
+}
 
 
 
