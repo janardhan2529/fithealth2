@@ -47,7 +47,7 @@
         state: import
         name: all   
         target: /tmp/db-schema.sql
-        login_host : terraform-20221228093850683100000006.czqifripk4x5.ap-south-1.rds.amazonaws.com
+        login_host : connect
         login_user : root
         login_password: jana1234
     - name: deploy
