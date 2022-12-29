@@ -13,6 +13,10 @@ pipeline{
         maven '3.8.6'
         terraform '21207'
     }
+    trrigerss{
+        
+       pollSCM('H/1 * * * *')
+    }
     stages{
         stage('checkout'){
             steps{
