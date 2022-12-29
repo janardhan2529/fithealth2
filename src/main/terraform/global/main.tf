@@ -124,6 +124,10 @@ module "fithealth_elb_module" {
     source      = "/u01/jenkins/workspace/fithealth/src/main/config/ansible/java-playbook.yml"
     destination = "/tmp/java-playbook.yml"
   }
+        provisioner "file" {
+    source      = "/u01/jenkins/workspace/fithealth/src/main/config/ansible/deploy.yml"
+    destination = "/tmp/deploy.yml"
+  }
   provisioner "remote-exec" {
     inline = [
       "sudo chmod 600 /home/ubuntu/.ssh/jana",
