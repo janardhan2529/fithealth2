@@ -129,9 +129,6 @@ resource "null_resource" "copy" {
   ]
 }
 
-
-
-}
 resource "null_resource" "ansiblerun" {
   triggers = null_resource.copy.triggers
   connection {
