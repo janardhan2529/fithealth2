@@ -90,26 +90,26 @@ resource "null_resource" "copy" {
 
   }
   provisioner "file" {
-    source      = "D:/infrastructure/fithealth_usecase/fithealth2/src/main/terraform/global/keys/jana"
+    source      = "/u01/jenkins/workspace/fitheaith_usecase/src/main/terraform/global/keys/jana"
     destination = "/home/ubuntu/.ssh/jana"
   }
 
   provisioner "file" {
-    source      = "D:/infrastructure/fithealth_usecase/fithealth2/src/main/config/tomcat.service.conf"
+    source      = "/u01/jenkins/workspace/fitheaith_usecase/src/main/config/tomcat.service.conf"
     destination = "/tmp/tomcat.service"
   }
   provisioner "local-exec" {
-    command = "sed -i 's/connect/${module.rds_db_fithealth_module.rds_address}/g' D:/infrastructure/fithealth_usecase/fithealth2/src/main/config/ansible/java-playbook.yml"
+    command = "sed -i 's/connect/${module.rds_db_fithealth_module.rds_address}/g' /u01/jenkins/workspace/fitheaith_usecase/src/main/config/ansible/java-playbook.yml"
     
 
   }
   provisioner "local-exec" {
-    command = "sed -i 's/connect/${module.rds_db_fithealth_module.db_endpoint}/g' D:/infrastructure/fithealth_usecase/fithealth2/src/main/resources/db.properties &&  mvn -f D:/infrastructure/fithealth_usecase/fithealth2/pom.xml clean verify"
+    command = "sed -i 's/connect/${module.rds_db_fithealth_module.db_endpoint}/g' /u01/jenkins/workspace/fitheaith_usecase/src/main/resources/db.properties &&  mvn -f /u01/jenkins/workspace/fitheaith_usecase/pom.xml clean verify"
 
 
   }
   provisioner "file" {
-    source      = "D:/infrastructure/fithealth_usecase/fithealth2/src/main/db/db-schema.sql"
+    source      = "/u01/jenkins/workspace/fitheaith_usecase/src/main/db/db-schema.sql"
     destination = "/tmp/db-schema.sql"
   }
   provisioner "remote-exec" {
@@ -137,11 +137,11 @@ resource "null_resource" "ansiblerun" {
     private_key = file("/u01/jenkins/workspace/fitheaith_usecase/src/main/terraform/global/keys/jana")
   }
   provisioner "file" {
-    source      = "D:/infrastructure/fithealth_usecase/fithealth2/src/main/config/ansible/java-playbook.yml"
+    source      = "/u01/jenkins/workspace/fitheaith_usecase/src/main/config/ansible/java-playbook.yml"
     destination = "/tmp/java-playbook.yml"
   }
   provisioner "file" {
-    source      = "D:/infrastructure/fithealth_usecase/fithealth2/target/fithealth2.war"
+    source      = "/u01/jenkins/workspace/fitheaith_usecase/target/fithealth2.war"
     destination = "/tmp/fithealth2.war"
   }
   provisioner "remote-exec" {
@@ -163,14 +163,14 @@ module "fithealth_elb_module" {
 }
     resource "null_resource" "ansible"{
       provisioner "local-exec" {
-    command = "sed -i 's/${module.rds_db_fithealth_module.rds_address}/connect/g' D:/infrastructure/fithealth_usecase/fithealth2/src/main/config/ansible/java-playbook.yml"
+    command = "sed -i 's/${module.rds_db_fithealth_module.rds_address}/connect/g'/u01/jenkins/workspace/fitheaith_usecase/src/main/config/ansible/java-playbook.yml"
   }
        provisioner "local-exec" {
-    command = "sed -i 's/${module.rds_db_fithealth_module.db_endpoint}/connect/g' D:/infrastructure/fithealth_usecase/fithealth2/src/main/resources/db.properties "
+    command = "sed -i 's/${module.rds_db_fithealth_module.db_endpoint}/connect/g'/u01/jenkins/workspace/fitheaith_usecase/src/main/resources/db.properties "
     }
 
   provisioner "local-exec" {
-    command = "echo ${aws_instance.jmpboxinstance.public_ip} > D:/infrastructure/fithealth_usecase/fithealth2/src/main/config/ansible/hosts"
+    command = "echo ${aws_instance.jmpboxinstance.public_ip} > /u01/jenkins/workspace/fitheaith_usecase/src/main/config/ansible/hosts"
   }
    depends_on = [
     module.rds_db_fithealth_module
