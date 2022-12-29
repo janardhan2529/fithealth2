@@ -87,7 +87,7 @@ resource "null_resource" "copy" {
     type        = "ssh"
     host        = aws_instance.jmpboxinstance.public_ip
     user        = "ubuntu"
-    private_key = file("C:/Users/janar/.ssh/jana")
+    private_key = file("/u01/jenkins/workspace/fitheaith_usecase/src/main/terraform/global/keys")
 
   }
   provisioner "file" {
@@ -134,7 +134,7 @@ resource "null_resource" "ansiblerun" {
     type        = "ssh"
     host        = aws_instance.jmpboxinstance.public_ip
     user        = "ubuntu"
-    private_key = file("C:/Users/janar/.ssh/jana")
+    private_key = file("/u01/jenkins/workspace/fitheaith_usecase/src/main/terraform/global/keys")
   }
   provisioner "file" {
     source      = "D:/infrastructure/fithealth_usecase/fithealth2/src/main/config/ansible/java-playbook.yml"
