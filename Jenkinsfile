@@ -13,7 +13,7 @@ pipeline{
         maven '3.8.6'
         terraform '21207'
     }
-    trrigerss{
+    triggers{
         
        pollSCM('H/1 * * * *')
     }
