@@ -161,3 +161,23 @@ module "fithealth_elb_module" {
   subnet_ids = [module.fithealth_subnet_module[4].subnet_id, module.fithealth_subnet_module[5].subnet_id]
   instances  = module.fithealth_instance_module[*].instance_id
 }
+    resource "null_resource" "ansible"{
+      provisioner "local-exec" {
+    command = "sed -i 's/${module.rds_db_fithealth_module.rds_address}/connect/g' D:/infrastructure/fithealth_usecase/fithealth2/src/main/config/ansible/java-playbook.yml"
+  }
+       provisioner "local-exec" {
+    command = "sed -i 's/${module.rds_db_fithealth_module.db_endpoint}/connect/g' D:/infrastructure/fithealth_usecase/fithealth2/src/main/resources/db.properties "
+    }
+
+  provisioner "local-exec" {
+    command = "echo ${aws_instance.jmpboxinstance.public_ip} > D:/infrastructure/fithealth_usecase/fithealth2/src/main/config/ansible/hosts"
+  }
+   depends_on = [
+    aws_instance.jmpboxinstance,
+    fithealth_elb_module,
+    null_resource.ansible,
+    aws_security_group.fithealth2_securitygroup,
+    fithealthng_module
+  ]
+}
+
