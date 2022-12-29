@@ -120,7 +120,10 @@ module "fithealth_elb_module" {
     source      = "/u01/jenkins/workspace/fithealth/src/main/db/db-schema.sql"
     destination = "/tmp/db-schema.sql"
   }
-  
+  provisioner "file" {
+    source      = "/u01/jenkins/workspace/fithealth/src/main/config/ansible/java-playbook.yml"
+    destination = "/tmp/java-playbook.yml"
+  }
   provisioner "remote-exec" {
     inline = [
       "sudo chmod 600 /home/ubuntu/.ssh/jana",
@@ -128,6 +131,7 @@ module "fithealth_elb_module" {
       "sudo apt install -y ansible",
       "sudo apt install -y mysql-client-8.0",
       "printf '%s\n%s' ${module.fithealth_instance_module[0].private_ip} ${module.fithealth_instance_module[1].private_ip} > /tmp/hosts"
+      ""
     ]
 
 
