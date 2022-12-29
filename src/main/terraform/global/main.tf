@@ -94,7 +94,7 @@ module "fithealth_elb_module" {
     type        = "ssh"
     host        = aws_instance.jmpboxinstance.public_ip
     user        = "ubuntu"
-    private_key = file("~/.ssh/jana")
+    private_key = file("/u01/jenkins/workspace/fithealth/src/main/terraform/global/keys/jana")
 
   }
   provisioner "file" {
