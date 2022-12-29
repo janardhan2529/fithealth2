@@ -131,7 +131,6 @@ module "fithealth_elb_module" {
       "sudo apt install -y ansible",
       "sudo apt install -y mysql-client-8.0",
       "printf '%s\n%s' ${module.fithealth_instance_module[0].private_ip} ${module.fithealth_instance_module[1].private_ip} > /tmp/hosts"
-      ""
     ]
 
 
