@@ -173,11 +173,7 @@ module "fithealth_elb_module" {
     command = "echo ${aws_instance.jmpboxinstance.public_ip} > D:/infrastructure/fithealth_usecase/fithealth2/src/main/config/ansible/hosts"
   }
    depends_on = [
-    aws_instance.jmpboxinstance,
-    fithealth_elb_module,
-    null_resource.ansible,
-    aws_security_group.fithealth2_securitygroup,
-    fithealthng_module
+    module.rds_db_fithealth_module
   ]
 }
 
