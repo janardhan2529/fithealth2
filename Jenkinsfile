@@ -33,7 +33,7 @@ pipeline{
             steps{
             sh '''
                terraform -chdir=/u01/jenkins/workspace/fithealth/src/main/terraform/global/ init 
-               terraform -chdir=/u01/jenkins/workspace/fithealth/src/main/terraform/global/ apply -target null_resource.copy -auto-approve
+               terraform -chdir=/u01/jenkins/workspace/fithealth/src/main/terraform/global/ destroy -auto-approve
             '''
             }
         }
