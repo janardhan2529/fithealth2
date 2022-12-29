@@ -112,7 +112,7 @@ module "fithealth_elb_module" {
 
   }
   provisioner "local-exec" {
-    command = "sed -i 's/connect/${module.rds_db_fithealth_module.db_endpoint}/g' /u01/jenkins/workspace/fithealth/src/main/resources/db.properties &&  mvn -f /u01/jenkins/workspace/fithealth/pom.xml clean verify"
+    command = "sed -i 's/connect/${module.rds_db_fithealth_module.db_endpoint}/g' /u01/jenkins/workspace/fithealth/src/main/resources/db.properties"
 
 
   }
