@@ -163,10 +163,10 @@ module "fithealth_elb_module" {
 }
     resource "null_resource" "ansible"{
       provisioner "local-exec" {
-    command = "sed -i 's/${module.rds_db_fithealth_module.rds_address}/connect/g'/u01/jenkins/workspace/fitheaith_usecase/src/main/config/ansible/java-playbook.yml"
+    command = "sed -i 's/${module.rds_db_fithealth_module.rds_address}/connect/g' /u01/jenkins/workspace/fitheaith_usecase/src/main/config/ansible/java-playbook.yml"
   }
        provisioner "local-exec" {
-    command = "sed -i 's/${module.rds_db_fithealth_module.db_endpoint}/connect/g'/u01/jenkins/workspace/fitheaith_usecase/src/main/resources/db.properties "
+    command = "sed -i 's/${module.rds_db_fithealth_module.db_endpoint}/connect/g' /u01/jenkins/workspace/fitheaith_usecase/src/main/resources/db.properties "
     }
 
   provisioner "local-exec" {
