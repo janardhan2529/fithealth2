@@ -50,6 +50,7 @@
         login_host : connect
         login_user : root
         login_password: jana1234
+    - name:
       ansible.builtin.systemd:
         daemon_reload: yes
       become: yes
@@ -58,7 +59,5 @@
         name: tomcat
         state: restarted
       become: yes
-
-
 
         
