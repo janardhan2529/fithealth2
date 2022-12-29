@@ -5,3 +5,12 @@
       copy:
         src: /tmp/fithealth2.war
         dest: /home/ubuntu/middleware/apache-tomcat-10.0.27/webapps
+    - name:
+      ansible.builtin.systemd:
+        daemon_reload: yes
+      become: yes
+    - name: Restart tomcat.service
+      ansible.builtin.service:
+        name: tomcat
+        state: restarted
+      become: yes
