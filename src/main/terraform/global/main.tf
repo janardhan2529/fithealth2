@@ -7,7 +7,6 @@ terraform {
 }
 provider "aws" {
   region  = "ap-south-1"
-  profile = "default"
 }
 module "fithealth_vpc" {
   source = "../modules/vpc"
